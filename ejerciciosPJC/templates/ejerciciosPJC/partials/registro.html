@@ -1,0 +1,19 @@
+<h2>Registro</h2>
+<form action="{% url 'registrar_usuario' %}" method="post" id="form-registro">
+    {% csrf_token %}
+    <div class="campo">
+        <label for="email">Correo electrónico:</label>
+        <input type="email" name="email" id="email" required />
+    </div>
+    <div class="campo" id="campo-contrasena">
+        <label for="password">Contraseña:</label>
+        <input type="password" name="password" id="password" required />
+    </div>
+    <div class="contenedor-enlaces-boton">
+        <div class="enlaces-rec-crea">
+            <a href="{% url 'mostrar_formulario' 'recupera_contrasena' %}">Recuperar contraseña</a>
+            <a href="{% url 'mostrar_formulario' 'iniciar_sesion' %}">Iniciar sesión</a>
+        </div>
+        <button type="submit" id="boton-formulario">Registrar</button>
+    </div>
+</form>

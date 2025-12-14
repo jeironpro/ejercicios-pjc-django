@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="shortcut icon" href="{% static 'ejerciciosPJC/img/codigo.png' %}" type="image/x-icon" />
+    <title>Ejercicios PJC</title>
+    <link rel="stylesheet" href="{% static 'ejerciciosPJC/css/index.css' %}" />
+</head>
+<body>
+    <header>
+        <div class="contenedor-cabecera">
+            <div class="logo-titulo">
+                <img src="{% static 'ejerciciosPJC/img/codigo.png' %}" alt="Logo Ejercicios PJC" />
+                <h1>Ejercicios PJC</h1>
+            </div>
+            <div class="contenedor-formulario">
+                {% for mensaje in messages %}
+                    <div id="mensaje" class="contenedor-mensaje">
+                        {% if mensaje.tags == "success" %}
+                            <p class="mensaje success">{{ mensaje }}</p>
+                        {% elif mensaje.tags == "error" %}
+                            <p class="mensaje error">{{ mensaje }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %} 
+                {% if not user.is_authenticated %}
+                    {% if formulario == 'registro' %}
+                        {% include 'ejerciciosPJC/partials/registro.html' %}
+                    {% elif formulario == 'recupera_contrasena' %}
+                        {% include 'ejerciciosPJC/partials/recupera_contrasena.html' %}
+                    {% elif formulario_contrasena %}
+                        {% include 'ejerciciosPJC/partials/cambia_contrasena.html' %}
+                    {% else %}
+                        {% include 'ejerciciosPJC/partials/login.html' %}
+                    {% endif %}
+                {% else %}
+                    <div id="contenedor-ua" class="contenedor-ua" data-url="{% url 'elimina_cuenta' %}">
+                        <p class="usuario-activo">{{ user.email }}</p>
+                        <a href="{% url 'cerrar_sesion' %}" class="enlace-ts">Cierra sesión</a>
+                        <a href="#" onclick="elimina_cuenta()" class="enlace-ts">Eliminar cuenta</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    <main>
+        <h2>Lista de ejercicios</h2>
+        <div class="contenedor-ejercicios">
+            <div class="contenedor-python card">
+                <h3>Python</h3>
+                <div class="paginado" data-lenguaje="python">
+                    <ol class="lista-ejercicios"></ol>
+                    <template class="ejercicios-data">
+                        {% for ejercicio in ejercicios %}
+                            {% if ejercicio.lenguaje == "Python" %}
+                                <div data-titulo="{{ ejercicio.titulo }}" data-url="{% url 'ejercicio' ejercicio.lenguaje ejercicio.id_unico %}"></div>
+                            {% endif %} 
+                        {% endfor %}
+                    </template>
+                    <div class="botones-paginacion">
+                        <button class="anterior">Anterior</button>
+                        <span class="pagina-actual">1</span>
+                        <button class="siguiente">Siguiente</button>
+                    </div>
+                </div>
+            </div>
+            <div class="contenedor-java card">
+                <h3>Java</h3>
+                <div class="paginado" data-lenguaje="java">
+                    <ol class="lista-ejercicios"></ol>
+                    <template class="ejercicios-data">
+                        {% for ejercicio in ejercicios %}
+                            {% if ejercicio.lenguaje == "Java" %}
+                                <div data-titulo="{{ ejercicio.titulo }}" data-url="{% url 'ejercicio' ejercicio.lenguaje ejercicio.id_unico %}"></div>
+                            {% endif %} 
+                        {% endfor %}
+                    </template>
+                    <div class="botones-paginacion">
+                        <button class="anterior">Anterior</button>
+                        <span class="pagina-actual">1</span>
+                        <button class="siguiente">Siguiente</button>
+                    </div>
+                </div>
+            </div>
+            <div class="contenedor-cpp card">
+                <h3>C++</h3>
+                <div class="paginado" data-lenguaje="java">
+                    <ol class="lista-ejercicios"></ol>
+                    <template class="ejercicios-data">
+                        {% for ejercicio in ejercicios %}
+                            {% if ejercicio.lenguaje == "Cpp" %}
+                                <div data-titulo="{{ ejercicio.titulo }}" data-url="{% url 'ejercicio' ejercicio.lenguaje ejercicio.id_unico %}"></div>
+                            {% endif %} 
+                        {% endfor %}
+                    </template>
+                    <div class="botones-paginacion">
+                        <button class="anterior">Anterior</button>
+                        <span class="pagina-actual">1</span>
+                        <button class="siguiente">Siguiente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>&copy; Todos los derechos reservados - JeironPro 2025</footer>
+    <script src="{% static 'ejerciciosPJC/js/index.js' %}"></script>
+</body>
+</html>

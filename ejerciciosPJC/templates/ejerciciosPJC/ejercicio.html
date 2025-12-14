@@ -1,0 +1,100 @@
+{% load static %}
+{% load filters %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'ejerciciosPJC/img/codigo.png' %}" type="image/x-icon">
+    <title>{{ ejercicio.id_unico }}</title>
+    <link rel="stylesheet" href="{% static 'ejerciciosPJC/css/ejercicio.css' %}">
+</head>
+<body>
+    <h1 style="display: none;">Escribe tu solución</h1>
+    <main>
+        <article class="ejercicio">
+            <h2 class="titulo-ejercicio">{{ ejercicio.titulo }}</h2>
+            <div class="detalles-ejercicio">
+                <span class="dificultad nivel-{{ ejercicio.nivel|normalizar_cadena }}">Nivel {{ ejercicio.nivel|lower }}</span>
+                <span class="tipo {{ ejercicio.tipo|normalizar_cadena }}">{{ ejercicio.tipo }}</span>
+            </div>
+            <p>{{ ejercicio.enunciado }}</p>
+            <div class="tareas-programa">
+                <p><strong>El programa debe:</strong></p>
+                <ul>
+                    {% for tarea in ejercicio.tareas|json_a_lista %}
+                    <li>{{ tarea }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="pistas">
+                Pistas:
+                <ul>
+                    {% for pista in ejercicio.pistas|json_a_lista %}
+                    <li>{{ pista }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="ejemplo-codigo">
+                <p><strong>Entrada:</strong></p><pre>{{ ejercicio.entrada|formatear_ejemplo }}</pre>
+                <br>
+                <p><strong>Salida:</strong></p><pre>{{ ejercicio.salida|formatear_ejemplo }}</pre>
+            </div>
+
+            {% if ejercicio.uml %}
+                <div class="uml-diagrama">
+                    <img src="{% static 'ejerciciosPJC/' %}{{ ejercicio.uml }}" alt="Diagrama UML del ejercicio">
+                </div>
+            {% endif %}
+        </article>
+        <div class="contenedor-editor">
+            <div class="editor-conf">
+                <div class="contenedor-tema">
+                    <label for="tema">Seleccionar tema:</label>
+                    <select id="tema">
+                        <option value="chrome">Chrome</option>
+                        <option value="monokai">Monokai</option>
+                        <option value="github">GitHub</option>
+                        <option value="twilight">Twilight</option>
+                        <option value="solarized_dark">Solarized Dark</option>
+                        <option value="solarized_light">Solarized Light</option>
+                        <option value="terminal">Terminal</option>
+                    </select>
+                </div>
+                <div class="contenedor-medida">
+                    <label for="medida">Medida de letra:</label>
+                    <select id="medida">
+                        <option value="16">16px</option>
+                        <option value="18">18px</option>
+                        <option value="20">20px</option>
+                        <option value="22">22px</option>
+                        <option value="24">24px</option>
+                    </select>
+                </div>
+            </div>
+            <div id="editor" data-idunico="{{ ejercicio.id_unico }}">{{ codigo_ejercicio }}</div>
+            <input type="hidden" id="lenguaje" value="{{ ejercicio.lenguaje }}">
+            <button class="boton-ejecutar" onclick="ejecutarPrueba()">Ejecutar</button>
+            <div class="contenedor-tabla">
+                <table id="pruebas">
+                    <thead>
+                        <tr>
+                            <th class="cap-prueba">Prueba</th>
+                            <th class="cap-esperado">Esperado</th>
+                            <th class="cap-resultado">Resultado</th>
+                            <th class="cap-pasa">Pasa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+                <div id="pasa-todas"></div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/ace.js"></script>
+    <script src="{% static 'ejerciciosPJC/js/ejercicio.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<h2>Recuperar contraseña</h2>
+<form action="{% url 'confirmar_recuperacion_contrasena' %}" method="post" id="form-recupera">
+    {% csrf_token %}
+    <div class="campo">
+        <label for="email">Correo electrónico:</label>
+        <input type="email" name="email" id="email" required />
+    </div>
+    <div class="contenedor-enlaces-boton">
+        <div class="enlaces-rec-crea">
+            <a href="{% url 'mostrar_formulario' 'registro' %}">Crear cuenta</a>
+            <a href="{% url 'mostrar_formulario' 'iniciar_sesion' %}">Iniciar sesión</a>
+        </div>
+        <button type="submit" id="boton-formulario">Enviar</button>
+    </div>
+</form>

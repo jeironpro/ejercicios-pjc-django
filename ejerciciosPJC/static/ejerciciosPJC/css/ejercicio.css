@@ -1,0 +1,226 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: grid;
+    font-family: "Fredoka", sans-serif;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.ejercicio {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    padding: 25px;
+}
+
+.ejercicio:last-child {
+    margin-bottom: 0;
+}
+
+.titulo-ejercicio {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.detalles-ejercicio {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.dificultad,
+.tipo {
+    display: inline-block;
+    border-radius: 12px;
+    color: #333333;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 6px 6px 6px 0;
+    padding: 4px 12px;
+}
+
+.nivel-facil {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.nivel-medio {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.nivel-dificil {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.tipo.elementos-basicos {
+    background-color: #c2ffc4;
+}
+
+.tipo.programacion-orientada-a-objetos {
+    background-color: #bde1ff;
+}
+
+.tipo.funcional {
+    background-color: #ff9800;
+}
+
+.tipo.avanzado {
+    background-color: #9c27b0;
+}
+
+.tareas-programa,
+.pistas {
+    margin-top: 20px;
+}
+
+.pistas {
+    background-color: #fdf6e3;
+    border-left: 4px solid #f0ad4e;
+    color: #664d03;
+    font-style: italic;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+}
+
+ul {
+    margin: 0 20px;
+}
+
+.ejemplo-codigo {
+    background-color: #272822;
+    border-radius: 10px;
+    color: #f8f8f2;
+    font-size: 14px;
+    overflow-x: auto;
+    padding: 15px;
+}
+
+.uml-diagrama {
+    margin-top: 1em;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 500px;
+}
+
+.uml-diagrama img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+main .contenedor-editor {
+    padding: 0 20px;
+    width: 100%;
+}
+
+main .editor-conf {
+    display: flex;
+    gap: 20px;
+}
+
+main .editor-conf .contenedor-tema label,
+main .editor-conf .contenedor-medida label {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+main .editor-conf .contenedor-tema select,
+main .editor-conf .contenedor-medida select {
+    background-color: rgba(255, 217, 0, 0.5);
+    border: none;
+    border-radius: 4px;
+    height: 30px;
+    width: 110px;
+}
+
+main #editor {
+    border: 1px solid #000;
+    font-family: "Courier New", monospace;
+    height: 500px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+main .contenedor-tabla {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 100px;
+    width: 100%;
+}
+
+#pruebas {
+    display: none;
+    height: max-content;
+    width: max-content;
+}
+
+main table,
+main table th,
+main table td {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+main table th,
+main table td {
+    padding: 10px;
+    vertical-align: top;
+    width: 200px;
+    word-wrap: break-word;
+}
+
+main table .cap-prueba {
+    background-color: rgba(123, 255, 0, 0.5);
+}
+
+main table .cap-esperado {
+    background-color: rgba(255, 217, 0, 0.5);
+}
+
+main table .cap-resultado {
+    background-color: rgba(0, 81, 255, 0.5);
+}
+
+main table .cap-pasa {
+    background-color: rgba(9, 255, 0, 0.5);
+}
+
+main #pasa-todas {
+    font-size: 22px;
+    padding: 10px;
+}
+
+main .boton-ejecutar {
+    background-color: rgba(0, 81, 255, 0.5);
+    border: none;
+    border-radius: 2px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+    float: right;
+    height: 40px;
+    margin-top: 20px;
+    width: 200px;
+}
+
+main .boton-ejecutar:hover {
+    background-color: #6090ff;
+}

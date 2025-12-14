@@ -1,0 +1,20 @@
+<h2>Cambiar contraseña</h2>
+<form action="{% url 'cambiar_contrasena' %}" method="post" id="form-cambiar-contrasena">
+    {% csrf_token %}
+    {% if uidb64 and token %}
+    <input type="hidden" name="uidb64" value="{{ uidb64 }}">
+    <input type="hidden" name="token" value="{{ token }}">
+    {% endif %}
+    <div id="mensaje-error"></div>
+    <div class="campo">
+        <label for="contrasena">Nueva contraseña:</label>
+        <input type="password" name="contrasena" id="contrasena" required />
+    </div>
+    <div class="campo">
+        <label for="contrasena_">Repetir contraseña:</label>
+        <input type="password" name="contrasena_" id="contrasena_" required />
+    </div>
+    <div class="contenedor-enlaces-boton">
+        <button type="submit">Cambiar</button>
+    </div>
+</form>

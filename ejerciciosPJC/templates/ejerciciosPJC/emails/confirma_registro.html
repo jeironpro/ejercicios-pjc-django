@@ -1,0 +1,18 @@
+{% autoescape off %}
+<p style="font-size: 16px;">Hola usuari@</p>
+
+<p style="font-size: 16px;">
+    Por favor, confirma tu correo electrónico haciendo click en el siguiente enlace:
+</p>
+
+<p style="font-size: 16px;">
+    Confirmar registro: 
+    <a href="http://{{ domain }}{% url 'confirmar_registro' token=token %}" style="font-size: 16px; color: #1a73e8; text-decoration: underline;">
+        registrarme
+    </a>
+</p>
+
+<p style="font-size: 16px;">
+    Si no hiciste esta solicitud, puedes ignorar este mensaje y los datos del registro no serán guardados.
+</p>
+{% endautoescape %}

@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'ejerciciosPJC/img/codigo.png' %}" type="image/x-icon">
+    <title>Administrar ejercicios</title>
+    <link rel="stylesheet" href="{% static 'ejerciciosPJC/css/administrar_ejercicios.css' %}">
+</head>
+<body>
+    <main>
+        <div class="contenedor-boton-agregar-cancelar">
+            <button class="boton-agregar-cancelar" id="boton-agregar" onclick="agregarEjercicio()">Agregar ejercicio</button>
+            <button class="boton-agregar-cancelar" id="boton-cancelar" onclick="cancelarEjercicio()" style="display: none;">Cancelar</button>
+        </div>
+        <div class="contenedor-tabla">
+            <form method="post" action="/agregar_ejercicio/">
+                {% csrf_token %}
+                <table id="ejercicios">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>ID Único</th>
+                            <th>Titulo</th>
+                            <th>Nivel</th>
+                            <th>Tipo</th>
+                            <th>Enunciado</th>
+                            <th>Tareas</th>
+                            <th>Pistas</th>
+                            <th>Entrada</th>
+                            <th>Salida</th>
+                            <th>Definicion</th>
+                            <th>UML</th>
+                            <th>Prueba</th>
+                            <th>Lenguaje</th>
+                            <th>Gestión</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ejercicio in ejercicios %}
+                            <tr>
+                                <td>{{ ejercicio.id }}</td>
+                                <td>{{ ejercicio.id_unico }}</td>
+                                <td>{{ ejercicio.titulo }}</td>
+                                <td>{{ ejercicio.nivel }}</td>
+                                <td>{{ ejercicio.tipo }}</td>
+                                <td>{{ ejercicio.enunciado }}</td>
+                                <td>{{ ejercicio.tareas }}</td>
+                                <td>{{ ejercicio.pistas }}</td>
+                                <td>{{ ejercicio.entrada }}</td>
+                                <td>{{ ejercicio.salida }}</td>
+                                <td>{{ ejercicio.definicion }}</td>
+                                <td>{{ ejercicio.uml }}</td>
+                                <td>{{ ejercicio.prueba }}</td>
+                                <td>{{ ejercicio.lenguaje }}</td>
+                                <td>
+                                    <div class="gestion">
+                                        <a href="#" onclick="editarEjercicio(this)"><span class="material-symbols-outlined">edit</span></a>
+                                        <a href="{% url 'eliminar_ejercicio' ejercicio.id_unico %}"><span class="material-symbols-outlined">delete</span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </main>
+    <script src="{% static 'ejerciciosPJC/js/administrar_ejercicios.js' %}"></script>
+</body>
+</html>
